@@ -15,10 +15,12 @@ public class TrackController {
         this.trackService = trackService;
     }
 
-    @GetMapping("api/v1/track/{trackname}")
+    @GetMapping("api/v1/EvaluatedTrack/{trackname}")
     @ResponseBody
     @CrossOrigin
     public EvaluatedTrack getTrack(@PathVariable String trackname) {
-        return new EvaluatedTrack(trackService.getTrack(trackname),getTrack("Inevitable"));
+        EvaluatedTrack et = new EvaluatedTrack(trackService.getTrack("Inevitable"),trackService.getTrack(trackname));
+        System.out.println(et.toString());
+        return et;
     }
 }
